@@ -11,6 +11,7 @@ COPY cmd/ cmd/
 COPY internal/ internal/
 COPY pkg/ pkg/
 COPY go.mod go.sum ./
+COPY .env .env
 
 RUN go mod download
 
