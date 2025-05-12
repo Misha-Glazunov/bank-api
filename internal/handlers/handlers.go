@@ -169,3 +169,7 @@ func (h *Handlers) handleServiceError(w http.ResponseWriter, err error) {
 func getUserIDFromContext(ctx context.Context) (string, error) {
     return middleware.GetUserIDFromContext(ctx)
 }
+
+func (h *Handlers) HealthCheck(w http.ResponseWriter, r *http.Request) {
+    h.respondJSON(w, map[string]string{"status": "ok"})
+}

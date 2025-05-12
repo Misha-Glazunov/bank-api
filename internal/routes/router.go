@@ -10,6 +10,7 @@ func NewRouter(h *handlers.Handlers, jwtSecret string) *mux.Router {
     r := mux.NewRouter()
     
     // Public routes
+    r.HandleFunc("/healthcheck", h.HealthCheck).Methods("GET")
     r.HandleFunc("/register", h.Register).Methods("POST")
     r.HandleFunc("/login", h.Login).Methods("POST")
     

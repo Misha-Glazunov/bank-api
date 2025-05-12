@@ -33,6 +33,11 @@ type JWTConfig struct {
 	Lifetime time.Duration
 }
 
+JWT: JWTConfig{
+    Secret:   viper.GetString("JWT_SECRET"),
+    Lifetime: viper.GetDuration("JWT_LIFETIME"),
+},
+
 // SMTPConfig содержит параметры SMTP-сервера
 type SMTPConfig struct {
 	Host     string

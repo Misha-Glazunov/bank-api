@@ -1,4 +1,3 @@
-// internal/middleware/auth.go
 package middleware
 
 import (
@@ -30,8 +29,13 @@ func AuthMiddleware(jwtSecret string) func(http.Handler) http.Handler {
 				sendJSONError(w, http.StatusUnauthorized, "Invalid authorization format")
 				return
 			}
+			
+			if !strings.HasPrefix(authHeader, "Bearer ") {
+                		respondError(w, http.StatusUnauthorized, "Invalid authorization format")
+                		return
+            		}
 
-			tokenString := parts[1]
+			tokenString := strings.TrimPrefix(authHeader, "Bearer ")
 
 			// Валидация токена
 			claims := &jwt.RegisteredClaims{}
