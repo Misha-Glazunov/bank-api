@@ -17,7 +17,6 @@ type UserCredentials struct {
 func TestUserRegistrationAndLogin(t *testing.T) {
     baseURL := "http://localhost:8080"
     
-    // Test registration
     user := UserCredentials{
         Email:    "testuser@example.com",
         Username: "testuser",
@@ -29,7 +28,6 @@ func TestUserRegistrationAndLogin(t *testing.T) {
     assert.NoError(t, err)
     assert.Equal(t, http.StatusOK, resp.StatusCode)
 
-    // Test login
     loginData := map[string]string{
         "email":    user.Email,
         "password": user.Password,
