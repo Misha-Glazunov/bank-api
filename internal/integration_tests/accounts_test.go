@@ -56,7 +56,6 @@ func createAccount(t *testing.T, token string) string {
     return account.ID
 }
 
-// Добавьте эту функцию если её нет в других файлах
 func registerAndLogin(t *testing.T, user map[string]string) string {
     // Регистрация
     payload, _ := json.Marshal(user)
