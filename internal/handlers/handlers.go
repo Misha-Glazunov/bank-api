@@ -37,7 +37,7 @@ func NewHandlers(
 	}
 }
 
-// Register обработчик регистрации пользователя
+// Обработчик регистрации пользователя
 func (h *Handlers) Register(w http.ResponseWriter, r *http.Request) {
 	var req struct {
 		Email    string `json:"email"`
@@ -58,7 +58,7 @@ func (h *Handlers) Register(w http.ResponseWriter, r *http.Request) {
 	h.respondJSON(w, map[string]string{"status": "success"})
 }
 
-// Login обработчик аутентификации
+// Обработчик аутентификации
 func (h *Handlers) Login(w http.ResponseWriter, r *http.Request) {
 	var req struct {
 		Email    string `json:"email"`
@@ -79,7 +79,7 @@ func (h *Handlers) Login(w http.ResponseWriter, r *http.Request) {
 	h.respondJSON(w, map[string]string{"token": token})
 }
 
-// CreateAccount создание нового счета
+// Создание нового счета
 func (h *Handlers) CreateAccount(w http.ResponseWriter, r *http.Request) {
 	userID, err := middleware.GetUserIDFromContext(r.Context())
 	if err != nil {
@@ -96,7 +96,7 @@ func (h *Handlers) CreateAccount(w http.ResponseWriter, r *http.Request) {
 	h.respondJSON(w, account)
 }
 
-// CreateCard выпуск новой карты
+// Выпуск новой карты
 func (h *Handlers) CreateCard(w http.ResponseWriter, r *http.Request) {
 	userID, err := getUserIDFromContext(r.Context())
 	if err != nil {
@@ -113,7 +113,7 @@ func (h *Handlers) CreateCard(w http.ResponseWriter, r *http.Request) {
 	h.respondJSON(w, card)
 }
 
-// TransferFunds обработчик перевода средств
+// Обработчик перевода средств
 func (h *Handlers) TransferFunds(w http.ResponseWriter, r *http.Request) {
 	var req struct {
 		FromAccountID string  `json:"from_account"`
@@ -133,8 +133,6 @@ func (h *Handlers) TransferFunds(w http.ResponseWriter, r *http.Request) {
 
 	h.respondJSON(w, map[string]string{"status": "success"})
 }
-
-// Вспомогательные методы
 
 func (h *Handlers) respondError(w http.ResponseWriter, code int, message string) {
 	w.Header().Set("Content-Type", "application/json")
