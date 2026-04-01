@@ -13,11 +13,10 @@ type contextKey string
 
 const userIDKey contextKey = "userID"
 
-// AuthMiddleware возвращает middleware для JWT-аутентификации
+// Возвращает middleware для JWT-аутентификации
 func AuthMiddleware(jwtSecret string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			// Извлечение и валидация заголовка Authorization
 			authHeader := r.Header.Get("Authorization")
 			if authHeader == "" {
 				sendJSONError(w, http.StatusUnauthorized, "Authorization header required")
@@ -68,7 +67,7 @@ func AuthMiddleware(jwtSecret string) func(http.Handler) http.Handler {
 	}
 }
 
-// GetUserIDFromContext извлекает userID из контекста
+// Извлекает userID из контекста
 func GetUserIDFromContext(ctx context.Context) (string, error) {
 	userID, ok := ctx.Value(userIDKey).(string)
 	if !ok || userID == "" {
@@ -77,7 +76,6 @@ func GetUserIDFromContext(ctx context.Context) (string, error) {
 	return userID, nil
 }
 
-// Вспомогательная функция для отправки ошибок в JSON
 func sendJSONError(w http.ResponseWriter, code int, message string) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
