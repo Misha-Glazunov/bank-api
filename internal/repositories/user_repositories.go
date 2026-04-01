@@ -20,7 +20,6 @@ type UserRepository interface {
     UsernameExists(ctx context.Context, username string) (bool, error)
 }
 
-// Реализация интерфейса с другим именем
 type PostgresUserRepository struct {
     db *sql.DB
 }
@@ -41,7 +40,6 @@ func (r *PostgresUserRepository) Create(ctx context.Context, user *models.User) 
     ).Scan(&user.ID, &user.CreatedAt)
 }
 
-// Добавить остальные методы интерфейса
 func (r *PostgresUserRepository) GetByEmail(ctx context.Context, email string) (*models.User, error) {
     query := `SELECT id, email, username, password_hash, created_at 
               FROM users WHERE email = $1`
