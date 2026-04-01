@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-// Config содержит все конфигурационные настройки приложения
+// Все конфигурационные настройки приложения
 type Config struct {
 	DB        DBConfig
 	JWT       JWTConfig
@@ -17,7 +17,7 @@ type Config struct {
 	App       AppConfig
 }
 
-// DBConfig содержит параметры подключения к PostgreSQL
+// Параметры подключения к PostgreSQL
 type DBConfig struct {
 	Host     string
 	Port     int
@@ -27,7 +27,7 @@ type DBConfig struct {
 	SSLMode  string
 }
 
-// JWTConfig содержит настройки JWT-аутентификации
+// Настройки JWT-аутентификации
 type JWTConfig struct {
 	Secret   string
 	Lifetime time.Duration
@@ -38,7 +38,7 @@ JWT: JWTConfig{
     Lifetime: viper.GetDuration("JWT_LIFETIME"),
 },
 
-// SMTPConfig содержит параметры SMTP-сервера
+// Параметры SMTP-сервера
 type SMTPConfig struct {
 	Host     string
 	Port     int
@@ -47,7 +47,7 @@ type SMTPConfig struct {
 	From     string
 }
 
-// CentralCBConfig содержит настройки интеграции с ЦБ РФ
+// Настройки интеграции с ЦБ РФ
 type CentralCBConfig struct {
 	WSDLURL      string
 	Timeout      time.Duration
@@ -55,7 +55,7 @@ type CentralCBConfig struct {
 	RetryDelay   time.Duration
 }
 
-// AppConfig содержит общие настройки приложения
+// Настройки приложения
 type AppConfig struct {
 	Env          string
 	HTTPPort     int
@@ -71,7 +71,7 @@ type HMACConfig struct {
     Secret string
 }
 
-// LoadConfig загружает конфигурацию из файла .env и переменных окружения
+// Загружает конфигурацию из файла .env и переменных окружения
 func LoadConfig() (*Config, error) {
 	viper.AutomaticEnv()
 	viper.SetConfigFile(".env")
