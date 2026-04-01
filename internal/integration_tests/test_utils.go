@@ -42,17 +42,9 @@ func teardown() {
     if testDB != nil {
         testDB.Close()
     }
-    
-    // 2. Дополнительная очистка (опционально)
-}
-
-func runMigrations() {
-    // Реализация запуска миграций 
-    // (можно использовать exec.Command для вызова migrate)
 }
 
 func cleanTestData() {
-    // Очистка всех тестовых таблиц
     tables := []string{"users", "accounts", "transactions"}
     for _, table := range tables {
         _, err := testDB.Exec(fmt.Sprintf("TRUNCATE TABLE %s CASCADE", table))
