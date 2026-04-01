@@ -1,17 +1,17 @@
 package services
 
 import (
-	"bytes"    // Для работы с буферами
-	"context"  // Контексты
-	"errors"   // Обработка ошибок
-	"fmt"      // Форматирование строк
-	"io"       // Ввод-вывод
-	"net/http" // HTTP-клиент
-	"time"     // Работа с временем
+	"bytes"   
+	"context" 
+	"errors"  
+	"fmt"     
+	"io"       
+	"net/http" 
+	"time"     
 
-	"github.com/Misha-Glazunov/bank-api/internal/config" // Конфигурация
-	"github.com/beevik/etree"                            // Парсинг XML
-	"github.com/sirupsen/logrus"                         // Логирование
+	"github.com/Misha-Glazunov/bank-api/internal/config" 
+	"github.com/beevik/etree"                           
+	"github.com/sirupsen/logrus"                        
 )
 
 type centralBankServiceImpl struct {
@@ -91,9 +91,8 @@ func parseXMLResponse(rawBody []byte) (float64, error) {
 }
 
 func (s *centralBankServiceImpl) GetCurrentRate(ctx context.Context) (float64, error) {
-	// Исправленный вызов с передачей конфигурации
-	soapRequest := buildSOAPRequest(s.config)          // <-- Добавлен s.config
-	rawBody, err := sendRequest(soapRequest, s.config) // <-- Добавлен s.config
+	soapRequest := buildSOAPRequest(s.config)          
+	rawBody, err := sendRequest(soapRequest, s.config) 
 
 	if err != nil {
 		return 0, fmt.Errorf("failed to get rate: %w", err)
