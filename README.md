@@ -2,8 +2,6 @@
 
 Микросервис для управления банковскими операциями с использованием Go, PostgreSQL и Docker.
 
-## 🚀 Быстрый старт
-
 ### Предварительные требования
 - Docker и Docker Compose
 - Go 1.24+ (для локальной разработки)
@@ -58,7 +56,7 @@ curl -X POST http://localhost:8080/register \
 curl -X POST http://localhost:8080/login \
   -H "Content-Type: application/json" \
   -d '{"email":"user@example.com", "password":"securepassword"}'
-🐳 Docker окружение
+Docker окружение
 PostgreSQL 15 на порту 5432
 
 Миграции через migrate
@@ -72,7 +70,7 @@ Go приложение на порту 8080
 
 Лимит запросов: 100 RPM
 
-🛡 Безопасность
+Безопасность
 Все транзакции записываются в audit log
 
 JWT срок действия: 24 часа
