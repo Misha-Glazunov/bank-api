@@ -26,9 +26,9 @@ services:
     volumes:
       - ./migrations:/migrations
     depends_on:
-      postgres:  # Должно совпадать с именем основного сервиса
+      postgres: 
         condition: service_healthy
-  api:  # Основной сервис приложения
+  api:
     build: .
     container_name: bank-api
     env_file: .env  
