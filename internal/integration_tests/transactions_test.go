@@ -12,11 +12,9 @@ func TestMoneyTransfer(t *testing.T) {
     baseURL := "http://localhost:8080"
     token := authenticateUser(t)
 
-    // Create two accounts
     fromAccount := createAccount(t, token)
     toAccount := createAccount(t, token)
 
-    // Test transfer
     transferData := map[string]interface{}{
         "from_account": fromAccount,
         "to_account":   toAccount,
