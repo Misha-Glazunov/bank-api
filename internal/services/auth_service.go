@@ -11,7 +11,6 @@ import (
     "golang.org/x/crypto/bcrypt"
 )
 
-// Удален ненужный импорт "errors"
 
 type authServiceImpl struct {
     userRepo  repositories.UserRepository
@@ -31,7 +30,7 @@ func (s *authServiceImpl) Register(ctx context.Context, email, username, passwor
         return fmt.Errorf("email check failed: %w", err)
     }
     if exists {
-        return ErrUserAlreadyExists // Используем ошибку из interfaces.go
+        return ErrUserAlreadyExists 
     }
 
     exists, err = s.userRepo.UsernameExists(ctx, username)
@@ -59,7 +58,7 @@ func (s *authServiceImpl) Register(ctx context.Context, email, username, passwor
 func (s *authServiceImpl) Login(ctx context.Context, email, password string) (string, error) {
     user, err := s.userRepo.GetByEmail(ctx, email)
     if err != nil {
-        return "", ErrInvalidCredentials // Используем ошибку из interfaces.go
+        return "", ErrInvalidCredentials
     }
 
     if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); err != nil {
