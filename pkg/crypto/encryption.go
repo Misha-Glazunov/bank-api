@@ -9,7 +9,7 @@ import (
     "io"
 )
 
-// Шифрование данных с использованием AES-GCM
+// Шифрование данных
 func EncryptAES(text []byte, key []byte) (string, error) {
     block, err := aes.NewCipher(key)
     if err != nil {
